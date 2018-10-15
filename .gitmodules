@@ -1,0 +1,3 @@
+[submodule "GpsDrivers"]
+	path = GpsDrivers
+	url = https://github.com/adrnp/GpsDrivers.git
