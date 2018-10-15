@@ -86,7 +86,7 @@ private:
 };
 
 GPS::GPS(char* uart_name) :
-_logfile("log.dat", std::ofstream::binary),
+_logfile("log.ubx", std::ofstream::binary),
 _healthy(false),
 _mode(GPS_DRIVER_MODE_UBX),
 _interface(GPSHelper::Interface::UART),
