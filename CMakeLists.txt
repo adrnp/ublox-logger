@@ -14,4 +14,4 @@ file(GLOB DRIVER_SOURCES "GpsDrivers/src/*.cpp")
 
 
 # make the executable
-add_executable(drivers	${SOURCES} ${DRIVER_SOURCES})
+add_executable(ublox_logger	${SOURCES} ${DRIVER_SOURCES})
