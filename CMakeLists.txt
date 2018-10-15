@@ -1,17 +1,11 @@
-cmake_minimum_required(VERSION 2.8)
-project("Driver Test")
+cmake_minimum_required(VERSION 3.9)
 
-# we want to compile for c++11
-add_definitions(-std=c++11)
+# define the project
+# TODO: see what this line should really be
+project(ublox-logger)
 
-# include the GPS Drivers
-include_directories("${PROJECT_SOURCE_DIR}/GpsDrivers")
+# run the cmake file from the serial port directory (?)
+add_subdirectory(include/serial_port)
+add_subdirectory(include/drivers)
 
-# get all the files to compile
-file(GLOB SOURCES "*.cpp")
-file(GLOB DRIVER_SOURCES "GpsDrivers/src/*.cpp")
-
-
-
-# make the executable
-add_executable(ublox_logger	${SOURCES} ${DRIVER_SOURCES})
+add_subdirectory(src/)

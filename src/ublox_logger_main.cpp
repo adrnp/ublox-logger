@@ -19,7 +19,7 @@
 #include "vehicle_gps_position.h"
 
 // include the drivers
-#include "GpsDrivers/src/ubx.h"		/* u-blox driver */
+#include "ubx.h"		/* u-blox driver */
 
 #define TIMEOUT_5HZ 500
 
@@ -244,6 +244,7 @@ void GPS::main_loop() {
 
 		//no break
 		case GPS_DRIVER_MODE_UBX:
+			cout << "connecting with UBX!" << endl;
 			_helper = new GPSDriverUBX(_interface, &GPS::callback, this, &_report_gps_pos, _p_report_sat_info);
 			break;
 
