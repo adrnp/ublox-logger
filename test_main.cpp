@@ -203,7 +203,8 @@ int GPS::callback(GPSCallbackType type, void *data1, int data2, void *user) {
 }
 
 void GPS::publish() {
-	// TODO: simply print out the current position info
+	// TODO: make output to terminal a setting
+	/*
 	cout << "position: " << endl;
 	cout << "\ttime:\t" << _report_gps_pos.time_utc_usec << endl;
 	cout << "\tfix type:\t" << (int)_report_gps_pos.fix_type << endl;
@@ -211,11 +212,15 @@ void GPS::publish() {
 	cout << "\tlon:\t" << _report_gps_pos.lon << endl;
 	cout << "\talt:\t" << _report_gps_pos.alt << endl;
 	cout << "\talt ellipsoid:\t" << _report_gps_pos.alt_ellipsoid << endl;
+	*/
 }
 
 void GPS::publishSatelliteInfo() {
+	// TODO: make output to terminal a setting
 	// TODO: simply print out the sat info
+	/*
 	cout << "sat message received" << endl;
+	*/
 }
 
 void GPS::main_loop() {
