@@ -47,7 +47,7 @@ class GPS {
 
 public:
 
-	GPS(char* uart_name);
+	GPS(char* uart_name, unsigned baudrate);
 
 	void main_loop();
 
@@ -85,10 +85,10 @@ private:
 
 };
 
-GPS::GPS(char* uart_name) :
+GPS::GPS(char* uart_name, unsigned baudrate) :
 _logfile("log.ubx", std::ofstream::binary),
 _healthy(false),
-_baudrate(0),
+_baudrate(baudrate),
 _mode(GPS_DRIVER_MODE_UBX),
 _interface(GPSHelper::Interface::UART),
 _helper(nullptr),
@@ -174,13 +174,10 @@ int GPS::callback(GPSCallbackType type, void *data1, int data2, void *user) {
 		return num_read;
 
 	case GPSCallbackType::writeDeviceData:
-		cout << "writing to device" << endl;
-
 		//return write(gps->_serial->fd, data1, (size_t)data2);
 		return gps->writeToSerial(data1, (size_t)data2);
 
 	case GPSCallbackType::setBaudrate:
-		cout << "setting baudrate to " << data2 << endl;
 		if (gps->_serial->set_baudrate(data2)) {
 			return 0;
 		} else {
@@ -373,7 +370,7 @@ int main(int argc, char **argv) {
 
 	
 	char* uart_name = (char*) "";
-	int baudrate = 9600;
+	int baudrate = 0;
 
 	// retrieve the user input (serial port)
 	for (int i = 1; i < argc; i++) {
@@ -401,7 +398,7 @@ int main(int argc, char **argv) {
 	bool verbose = true;
 	
 	// create the GPS device
-	GPS* gps = new GPS(uart_name);
+	GPS* gps = new GPS(uart_name, baudrate);
 
 
 	// now run the main task
