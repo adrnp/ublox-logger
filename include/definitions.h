@@ -6,9 +6,9 @@
 #pragma once
 
 // TODO: figure out how to do these properly
-#define GPS_INFO(...) printf(__VA_ARGS__) //PX4_INFO(__VA_ARGS__)
-#define GPS_WARN(...) printf(__VA_ARGS__) //PX4_WARN(__VA_ARGS__)
-#define GPS_ERR(...) printf(__VA_ARGS__) //PX4_ERR(__VA_ARGS__)
+#define GPS_INFO(...) printf("INFO: "); printf(__VA_ARGS__); printf("\n") //PX4_INFO(__VA_ARGS__)
+#define GPS_WARN(...) printf("WARN: "); printf(__VA_ARGS__); printf("\n") //PX4_WARN(__VA_ARGS__)
+#define GPS_ERR(...) printf("ERR: "); printf(__VA_ARGS__); printf("\n") //PX4_ERR(__VA_ARGS__)
 
 #include "vehicle_gps_position.h"
 #include "satellite_info.h"

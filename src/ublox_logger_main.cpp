@@ -88,6 +88,7 @@ private:
 GPS::GPS(char* uart_name) :
 _logfile("log.ubx", std::ofstream::binary),
 _healthy(false),
+_baudrate(0),
 _mode(GPS_DRIVER_MODE_UBX),
 _interface(GPSHelper::Interface::UART),
 _helper(nullptr),
@@ -204,7 +205,7 @@ int GPS::callback(GPSCallbackType type, void *data1, int data2, void *user) {
 
 void GPS::publish() {
 	// TODO: make output to terminal a setting
-	/*
+
 	cout << "position: " << endl;
 	cout << "\ttime:\t" << _report_gps_pos.time_utc_usec << endl;
 	cout << "\tfix type:\t" << (int)_report_gps_pos.fix_type << endl;
@@ -212,7 +213,7 @@ void GPS::publish() {
 	cout << "\tlon:\t" << _report_gps_pos.lon << endl;
 	cout << "\talt:\t" << _report_gps_pos.alt << endl;
 	cout << "\talt ellipsoid:\t" << _report_gps_pos.alt_ellipsoid << endl;
-	*/
+
 }
 
 void GPS::publishSatelliteInfo() {
@@ -343,17 +344,19 @@ void GPS::main_loop() {
 						break;
 					}
 
-					printf("module found: %s", mode_str);
+					printf("module found: %s\n", mode_str);
 					_healthy = true;
 				}
 			}
 
 			if (_healthy) {
-				printf("GPS module lost");
+				printf("GPS module lost\n");
 				_healthy = false;
 				//_rate = 0.0f;
 				//_rate_rtcm_injection = 0.0f;
 			}
+		} else {
+			printf("helper is throwing a non-zero config\n");
 		}
 	}
 }
