@@ -23,6 +23,8 @@
 #define M_RAD_TO_DEG_F 		57.2957795130823f
 #define M_RAD_TO_DEG 		57.295779513082323
 
+#define gps_usleep usleep
+
 using time_stamp = std::chrono::time_point<std::chrono::system_clock, std::chrono::microseconds>;
 
 typedef uint64_t gps_abstime;
